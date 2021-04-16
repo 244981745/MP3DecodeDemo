@@ -13,7 +13,7 @@ int getID3V2Head(BitStream *bs, HeadLab *hdr)
 		hdr->ExtendedHeader			=	(hdr->Flag >> 6 & 0x1);
 		hdr->ExperimentalIndicator	=	(hdr->Flag >> 5 & 0x1);
 		
-		//½âÂësize
+		//è§£ç size
 		 hdr->size	=	0;
 		 hdr->size	|=	(hdr->Size[0]&0x7f) << 21;
 		 hdr->size	|=	(hdr->Size[1]&0x7f) << 14;
@@ -59,15 +59,15 @@ int getID3V2Tag(BitStream *bs)
 			return -1;
 		}
 		
-		i	+=	fread((void*)p1,1,10,bs->fp);	//¶ÁÖ¡Í·10×Ö½Ú 
+		i	+=	fread((void*)p1,1,10,bs->fp);	//è¯»å¸§å¤´10å­—èŠ‚ 
 		
-		//½âÂësize 
+		//è§£ç size 
 		p1->size	=	p1->Size[0]<<24;
 		p1->size	|=	p1->Size[1]<<16;
 		p1->size	|=	p1->Size[2]<<8;
 		p1->size	|=	p1->Size[3]<<0;
 
-		//¹ýÂË´íÎóÖ¡¼°picÖ¡   Í¼Æ¬ºÍ·ÇT¿ªÍ·µÄÖ¡£¬ÈçcommÖ¡½«²»¼ÓÈë±íÖÐ 
+		//è¿‡æ»¤é”™è¯¯å¸§åŠpicå¸§   å›¾ç‰‡å’ŒéžTå¼€å¤´çš„å¸§ï¼Œå¦‚commå¸§å°†ä¸åŠ å…¥è¡¨ä¸­ 
 		if(p1->FrameID[0] != 'T')
 		{
 			i	+=	p1->size;
@@ -76,42 +76,42 @@ int getID3V2Tag(BitStream *bs)
 			continue;
 		}
 		
-		i	+=	fread((void *)&(p1->charcode),1,1,bs->fp);		//¶ÁÄÚÈÝ±àÂë±êÊ¶
+		i	+=	fread((void *)&(p1->charcode),1,1,bs->fp);		//è¯»å†…å®¹ç¼–ç æ ‡è¯†
 		
-		if(p1->charcode == 0x00) //iso 8859-1±àÂë 
+		if(p1->charcode == 0x00) //iso 8859-1ç¼–ç  
 		{
 			p1->data	=	(unsigned char*)malloc(p1->size - 1);
 			if(p1->FrameID[0] != 'T')continue;
 			memset((void *)p1->data,'\0',p1->size-1);
 			i += fread((void *)p1->data,1,p1->size -1,bs->fp);
 		}
-		else if(p1->charcode == 0x01)	//utf16±àÂë
+		else if(p1->charcode == 0x01)	//utf16ç¼–ç 
 		{
 			p1->data =	(unsigned char*)malloc(p1->size -3);
 			memset((void *)p1->data,'\0',p1->size-3);
 			i += fread((void *)p1->bigorlittle,1,2,bs->fp);
 			i += fread((void *)p1->data,1,p1->size-3,bs->fp);
 		}
-		else if(p1->charcode == 0x02)	//utf16-be±àÂë
+		else if(p1->charcode == 0x02)	//utf16-beç¼–ç 
 		{
 			p1->data =	(unsigned char*)malloc(p1->size -3);
 			memset((void *)p1->data,'\0',p1->size-3);
 			i += fread((void *)p1->bigorlittle,1,2,bs->fp);
 			i += fread((void *)p1->data,1,p1->size-3,bs->fp);	
 		}
-		else if(p1->charcode == 0x03)	//utf-8±àÂë 
+		else if(p1->charcode == 0x03)	//utf-8ç¼–ç  
 		{
 			p1->data =	(unsigned char*)malloc(p1->size -4);
 			memset((void *)p1->data,'\0',p1->size-4);
 			i += fread((void *)p1->bigorlittle,1,3,bs->fp);
 			i += fread((void *)p1->data,1,p1->size-4,bs->fp);
 		}
-		else	//´íÎóÖµ 
+		else	//é”™è¯¯å€¼ 
 		{
 			break;
 		}
 		
-		//²åÈëµ½±êÇ©Ö¡Á´	
+		//æ’å…¥åˆ°æ ‡ç­¾å¸§é“¾	
 		listTailInsert(bs->tagL, p1);
 	}
 
