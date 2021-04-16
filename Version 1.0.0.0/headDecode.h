@@ -9,15 +9,15 @@
 
 typedef struct headlable
 {
-    char	FileIdentifier[3];		// ±ØĞëÎª×Ö·û´®"ID3",·ñÔòÈÏÎª±êÇ©²»´æÔÚ ¶ÔÓ¦16½øÖÆ£º49 44 33
-    char	Version;			// °æ±¾ºÅID3V2.3 ¾Í¼ÇÂ¼0x03
-    char	Revision;		// ¸±°æ±¾ºÅ´Ë°æ±¾¼ÇÂ¼Îª0x00
-    char	Flag;			// ´æ·Å±êÖ¾µÄ×Ö½Ú,Õâ¸ö°æ±¾Ö»¶¨ÒåÁË3bit
-    char	Size[4];		// ±êÇ©Ö¡µÄ´óĞ¡,²»°üÀ¨±êÇ©Í·µÄ10¸ö×Ö½Ú
+    char	FileIdentifier[3];		// å¿…é¡»ä¸ºå­—ç¬¦ä¸²"ID3",å¦åˆ™è®¤ä¸ºæ ‡ç­¾ä¸å­˜åœ¨ å¯¹åº”16è¿›åˆ¶ï¼š49 44 33
+    char	Version;			// ç‰ˆæœ¬å·ID3V2.3 å°±è®°å½•0x03
+    char	Revision;		// å‰¯ç‰ˆæœ¬å·æ­¤ç‰ˆæœ¬è®°å½•ä¸º0x00
+    char	Flag;			// å­˜æ”¾æ ‡å¿—çš„å­—èŠ‚,è¿™ä¸ªç‰ˆæœ¬åªå®šä¹‰äº†3bit
+    char	Size[4];		// æ ‡ç­¾å¸§çš„å¤§å°,ä¸åŒ…æ‹¬æ ‡ç­¾å¤´çš„10ä¸ªå­—èŠ‚
     
-    char	Unsynchronisation;		//·ÇÍ¬²½ 
-    char	ExtendedHeader;			//À©Õ¹Í·²¿ÊÇ·ñ´æÔÚ 
-    char	ExperimentalIndicator;	//ÊµÑéÖ¸Ê¾Æ÷,Èç¹û¸ÃÎ»ÖÃ1,¸ÃÖ¡Îª²âÊÔÖ¡
+    char	Unsynchronisation;		//éåŒæ­¥ 
+    char	ExtendedHeader;			//æ‰©å±•å¤´éƒ¨æ˜¯å¦å­˜åœ¨ 
+    char	ExperimentalIndicator;	//å®éªŒæŒ‡ç¤ºå™¨,å¦‚æœè¯¥ä½ç½®1,è¯¥å¸§ä¸ºæµ‹è¯•å¸§
     unsigned long size;
 }HeadLab;
 
@@ -59,7 +59,7 @@ char *Genre[GENRE_INDEX_MAX]=
 	"NativeAmerican","Cabaret","NewWave","Psychadelic","Rave","Showtunes","Trailer","Lo-Fi",
 	"Tribal","AcidPunk","AcidJazz","Polka","Retro","Musical","Rock&Roll","HardRock",
 	
-	//WinampÀ©³ä
+	//Winampæ‰©å……
 	"Folk","Folk-Rock","NationalFolk","Swing","FastFusion","Bebob","Latin","Revival",
 	"Celtic","Bluegrass","Avantgarde","GothicRock","ProgessiveRock","PsychedelicRock","SymphonicRock","SlowRock",
 	"BigBand","Chorus","EasyListening","Acoustic","Humour","Speech","Chanson","Opera",
@@ -67,7 +67,7 @@ char *Genre[GENRE_INDEX_MAX]=
 	"Club","Tango","Samba","Folklore","Ballad","PowerBallad","RhythmicSoul","Freestyle",
 	"Duet","PunkRock","DrumSolo","Acapella","Euro-House","DanceHall",
 	
-	//ÆäËûÀ©³ä
+	//å…¶ä»–æ‰©å……
 	"Goa","Drum&Bass","Club-House","Hardcore","Terror","Indie","BritPop","Negerpunk",
 	"PolskPunk","Beat","ChristianGangstaRap","Heavyl","Blackl","Crossover","ContemporaryChristian","ChristianRock",
 	"Merengue","Salsa","Trashl","Anime","JPop","Synthpop"
