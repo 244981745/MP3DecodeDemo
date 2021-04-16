@@ -4,7 +4,7 @@ File name:	taglink.c
 Author:		DREACYOU
 Version:	0.0.1.0
 Date:		2019.7.8
-Description: °ü¹üÏµÍ³ 
+Description: åŒ…è£¹ç³»ç»Ÿ 
 Others: 
 Function List: 
 
@@ -17,13 +17,13 @@ History:
 
 /*************************************************
 Function: creatNode
-Description: ´´½¨Á´±í½Úµã
+Description: åˆ›å»ºé“¾è¡¨èŠ‚ç‚¹
 Calls: 
 Called By: 
 
 Input: void
 Output: TagLinkNode*
-Return: ÕıÈ··µ»ØËù´´½¨µÄ½ÚµãÖ¸Õë£¬³ö´í·µ»ØNULL 
+Return: æ­£ç¡®è¿”å›æ‰€åˆ›å»ºçš„èŠ‚ç‚¹æŒ‡é’ˆï¼Œå‡ºé”™è¿”å›NULL 
 Others: 
 *************************************************/
 TagLinkNode*
@@ -38,7 +38,7 @@ creatNode(void)
 
 /*************************************************
 Function: destroyNode
-Description: Ïú»Ù½Úµã 
+Description: é”€æ¯èŠ‚ç‚¹ 
 Calls: 
 Called By: 
 
@@ -56,13 +56,13 @@ void destroyNode(TagLinkNode *node)
 
 /*************************************************
 Function: initList
-Description: ¹¹ÔìÒ»¸ö¿ÕÁ´±í (´´½¨Í·½Úµã) 
+Description: æ„é€ ä¸€ä¸ªç©ºé“¾è¡¨ (åˆ›å»ºå¤´èŠ‚ç‚¹) 
 Calls: 
 Called By: 
 
 Input: TagLink *L
 Output: 
-Return: ³ö´í·µ»Ø-1£¬ÕıÈ··µ»Ø0 
+Return: å‡ºé”™è¿”å›-1ï¼Œæ­£ç¡®è¿”å›0 
 Others: 
 *************************************************/
 int initList(TagLink *L)
@@ -78,13 +78,13 @@ int initList(TagLink *L)
 
 /*************************************************
 Function: destroyList
-Description: Ïú»ÙÒ»¸öÁ´±í
+Description: é”€æ¯ä¸€ä¸ªé“¾è¡¨
 Calls: 
 Called By: 
 
 Input: TagLink *L
 Output: 
-Return: ³ö´í·µ»Ø-1£¬ÕıÈ··µ»Ø0 
+Return: å‡ºé”™è¿”å›-1ï¼Œæ­£ç¡®è¿”å›0 
 Others: 
 *************************************************/
 int destroyList(TagLink *L)
@@ -107,16 +107,16 @@ int destroyList(TagLink *L)
 
 /*************************************************
 Function: clearList
-Description: Çå¿ÕÒ»¸öÁ´±í
+Description: æ¸…ç©ºä¸€ä¸ªé“¾è¡¨
 Calls: 
 Called By: 
 
 Input: TagLink *L
 Output: 
-Return: ·µ»Ø0
+Return: è¿”å›0
 Others: 
 *************************************************/
-int clearList(TagLink *L)			//ÏßĞÔ±í´æÔÚ,½«LÖØÖÃÎª¿Õ±í
+int clearList(TagLink *L)			//çº¿æ€§è¡¨å­˜åœ¨,å°†Lé‡ç½®ä¸ºç©ºè¡¨
 {
 	TagLinkNode *p1,*p2;
 	p1 = L->head->next;
@@ -136,13 +136,13 @@ int clearList(TagLink *L)			//ÏßĞÔ±í´æÔÚ,½«LÖØÖÃÎª¿Õ±í
 
 /*************************************************
 Function: listEmpty
-Description: ²éÑ¯Á´±íÊÇ·ñÎª¿Õ 
+Description: æŸ¥è¯¢é“¾è¡¨æ˜¯å¦ä¸ºç©º 
 Calls: 
 Called By: 
 
 Input: TagLink *L
 Output: 
-Return: ¿ÕÁ´±í·µ»Øtrue£¬·Ç¿ÕÁ´±í·µ»Øfalse 
+Return: ç©ºé“¾è¡¨è¿”å›trueï¼Œéç©ºé“¾è¡¨è¿”å›false 
 Others: 
 *************************************************/
 int listEmpty(TagLink *L)
@@ -158,13 +158,13 @@ int listEmpty(TagLink *L)
 
 /*************************************************
 Function: listLength
-Description: ²éÑ¯Á´±í³¤¶È
+Description: æŸ¥è¯¢é“¾è¡¨é•¿åº¦
 Calls: 
 Called By: 
 
 Input: TagLink  *L
 Output: 
-Return: ·µ»ØÁ´±í³¤¶È 
+Return: è¿”å›é“¾è¡¨é•¿åº¦ 
 Others: 
 *************************************************/
 int listLength(TagLink  *L)
@@ -174,13 +174,13 @@ int listLength(TagLink  *L)
 
 /*************************************************
 Function: listTailInsert
-Description: ÔÚÁ´±íÄ©Î²²åÈë½Úµãe 
+Description: åœ¨é“¾è¡¨æœ«å°¾æ’å…¥èŠ‚ç‚¹e 
 Calls: 
 Called By: 
 
 Input: TagLink  *L, struct PacketLinkNode *e
 Output: 
-Return: ³ö´í·µ»Øfalse ÕıÈ··µ»Ø0 
+Return: å‡ºé”™è¿”å›false æ­£ç¡®è¿”å›0 
 Others: 
 *************************************************/
 int listTailInsert(TagLink  *L, TagLinkNode *e)
@@ -200,13 +200,13 @@ int listTailInsert(TagLink  *L, TagLinkNode *e)
 
 /*************************************************
 Function: visit
-Description: ·ÃÎÊ½ÚµãĞÅÏ¢²¢Êä³ö 
+Description: è®¿é—®èŠ‚ç‚¹ä¿¡æ¯å¹¶è¾“å‡º 
 Calls: 
 Called By: 
 
 Input: TagLinkNode *node,int offset
 Output: 
-Return: ·µ»Ø0 
+Return: è¿”å›0 
 Others: 
 *************************************************/
 int visit(TagLinkNode *node,int offset)
@@ -247,13 +247,13 @@ int visit(TagLinkNode *node,int offset)
 
 /*************************************************
 Function: listTraverse
-Description: ±éÀúÁ´±í 
+Description: éå†é“¾è¡¨ 
 Calls: 
 Called By: 
 
 Input: TagLink  *L
 Output: 
-Return: ·µ»Ø0 
+Return: è¿”å›0 
 Others: 
 *************************************************/
 int listTraverse(TagLink  *L)
