@@ -10,7 +10,7 @@ int frameHeaderDecode(BitStream *bs, FrameHeader *hdr)
 
 	if(frist)
 	{
-		fseek(bs->fp,bs->headSize,SEEK_SET);	//Ìø×ªÖÁÊ×Ö¡
+		fseek(bs->fp,bs->headSize,SEEK_SET);	//è·³è½¬è‡³é¦–å¸§
 		for(retry = 0; retry < 2; retry++)
 		{
 			hdr->SyncWord	=	getNbits(bs, 12);
@@ -46,7 +46,7 @@ int sideInfoDecode(BitStream *bs,FrameHeader *hdr,IIISideInfo_t *sinfo)
 	int gr,ch,nch,i;
 	gr=ch=nch=i =0;
 	sinfo->MainDataBegin		=	getNbits(bs,	9);
-	if(hdr->ChannelMode	==	0x03)	//µ¥ÉùµÀ
+	if(hdr->ChannelMode	==	0x03)	//å•å£°é“
 	{
 		sinfo->PrivateBits		=	getNbits(bs,	5);
 		for(i = 0; i < 4; i++)
@@ -54,7 +54,7 @@ int sideInfoDecode(BitStream *bs,FrameHeader *hdr,IIISideInfo_t *sinfo)
 		
 		nch						=	1;
 	}
-	else		//Ë«ÉùµÀºÍÁ¢ÌåÉù
+	else		//åŒå£°é“å’Œç«‹ä½“å£°
 	{
 		sinfo->PrivateBits		=	getNbits(bs,	3);
 		for(i = 0; i < 4; i++)
