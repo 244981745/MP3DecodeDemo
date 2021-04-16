@@ -9,17 +9,17 @@ int getID3V2Info(FILE *fp)
 	
 	fread((void *)&hlab,1,10,fp);
 	
-	if(hlab.FileIdentifier[0] == 'I' && hlab.FileIdentifier[1] == 'D' && hlab.FileIdentifier[2] == '3')//Í·±êÊ¶ 
+	if(hlab.FileIdentifier[0] == 'I' && hlab.FileIdentifier[1] == 'D' && hlab.FileIdentifier[2] == '3')//å¤´æ ‡è¯† 
 	{
 		printf("%.3s\n",hlab.FileIdentifier);
 
 		
-		//½âÂëFlag 
+		//è§£ç Flag 
 		hlab.Unsynchronisation		=	(hlab.Flag >> 7 & 0x1);
 		hlab.ExtendedHeader			=	(hlab.Flag >> 6 & 0x1);
 		hlab.ExperimentalIndicator	=	(hlab.Flag >> 5 & 0x1);
 		
-		//½âÂësize
+		//è§£ç size
 		 hlab.size	=	0;
 		 hlab.size	|=	(hlab.Size[0]&0x7f) << 21;
 		 hlab.size	|=	(hlab.Size[1]&0x7f) << 14;
@@ -34,13 +34,13 @@ int getID3V2Info(FILE *fp)
 		}
 		else if(hlab.Version == 4)
 		{
-			printf("2.4.%x\n",hlab.Revision);	//unicode±àÂë
+			printf("2.4.%x\n",hlab.Revision);	//unicodeç¼–ç 
 			getID3V2Tag4Info(fp ,hlab.size);
 		}		 
 		 return hlab.size;
 		
 	}
-	else	//Í·±êÊ¶¶Ô²»ÉÏ£¬²»´æÔÚtag v3 
+	else	//å¤´æ ‡è¯†å¯¹ä¸ä¸Šï¼Œä¸å­˜åœ¨tag v3 
 	{
 		printf("not exist id3\n");
 		return -1;
@@ -77,56 +77,56 @@ int getID3V2Tag3Info(FILE *fp, int headsize,TagLab *frame)
 		if(frame->size  <= 0)
 		{
 			// id3 padding
-			//ftell(fp); ¼ÆËãpadding´óĞ¡£¬frame offset- ftell + 10£» 
+			//ftell(fp); è®¡ç®—paddingå¤§å°ï¼Œframe offset- ftell + 10ï¼› 
 			break;
 		}
 		
 /*		if(((frame->FrameID[0])<<24 | (frame->FrameID[1])<<16 | (frame->FrameID[2])<<8 | (frame->FrameID[3])) == 0x434f4d4d)
 		{
-			//¶Á±¸×¢
+			//è¯»å¤‡æ³¨
 			
 			continue;
 		}
 		
 		if(((frame->FrameID[0])<<24 | (frame->FrameID[1])<<16 | (frame->FrameID[2])<<8 | (frame->FrameID[3])) != 0x41504943 )
 		{
-			//¶Á×¨¼­Í¼Æ¬
+			//è¯»ä¸“è¾‘å›¾ç‰‡
 			
 			continue;
 		}
 */
 		printf("frame size:%d\n",frame->size);
-//½âÂëframe data  1¸ö×Ö½Ú±íÊ¾±àÂë£¬0-3×Ö½Ú±íÊ¾´óĞ¡¶Ë 
+//è§£ç frame data  1ä¸ªå­—èŠ‚è¡¨ç¤ºç¼–ç ï¼Œ0-3å­—èŠ‚è¡¨ç¤ºå¤§å°ç«¯ 
 		i -= fread((void *)&frame->charcode,1,1,fp);
 		printf("charcode:%x\n",frame->charcode);
-		if(frame->charcode == 0x00) //iso 8859-1±àÂë 
+		if(frame->charcode == 0x00) //iso 8859-1ç¼–ç  
 		{
 			frame->data	=	(unsigned char*)malloc(frame->size - 1);
 			memset((void *)frame->data,'\0',frame->size-1);
 			i -= fread((void *)frame->data,1,frame->size -1,fp);
 		}
-		else if(frame->charcode == 0x01)	//utf16±àÂë
+		else if(frame->charcode == 0x01)	//utf16ç¼–ç 
 		{
 			frame->data =	(unsigned char*)malloc(frame->size -3);
 			memset((void *)frame->data,'\0',frame->size-3);
 			i -= fread((void *)frame->bigorlittle,1,2,fp);
 			i -= fread((void *)frame->data,1,frame->size-3,fp);
 		}
-		else if(frame->charcode == 0x02)	//utf16-be±àÂë
+		else if(frame->charcode == 0x02)	//utf16-beç¼–ç 
 		{
 			frame->data =	(unsigned char*)malloc(frame->size -3);
 			memset((void *)frame->data,'\0',frame->size-3);
 			i -= fread((void *)frame->bigorlittle,1,2,fp);
 			i -= fread((void *)frame->data,1,frame->size-3,fp);	
 		}
-		else if(frame->charcode == 0x03)	//utf-8±àÂë 
+		else if(frame->charcode == 0x03)	//utf-8ç¼–ç  
 		{
 			frame->data =	(unsigned char*)malloc(frame->size -4);
 			memset((void *)frame->data,'\0',frame->size-4);
 			i -= fread((void *)frame->bigorlittle,1,3,fp);
 			i -= fread((void *)frame->data,1,frame->size-4,fp);
 		}
-		else	//´íÎóÖµ 
+		else	//é”™è¯¯å€¼ 
 		{
 			return -1;
 		}
