@@ -27,12 +27,12 @@ typedef struct bs
 	int		fileEnd;
 	int		headSize;
 	
-	//buf操作相关
+	//buf鎿嶄綔鐩稿叧
 	int		bufByteIndex;
 	int		bufBitIndex;
 	int		bufFillLen;		//
 	
-	int		bufeobs;		//buff里的bit已经解码完标识位
+	int		bufeobs;		//buff閲岀殑bit宸茬粡瑙ｇ爜瀹屾爣璇嗕綅
 	
 }BitStream;
 
